@@ -1,0 +1,10 @@
+:root {
+    /* Colors extracted from your image */
+    --logo-primary: #173b30;
+    /* Deep forest green */
+    --logo-secondary: #ba2e26;
+    /* Rusty red */
+    --header-bg: rgba(248, 246, 239, 0.9);
+    /* Off-white/cream background */
+    --text-primary: #333333;
+}

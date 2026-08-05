@@ -1,0 +1,8 @@
+- [x] Install `react-router-dom`
+- [x] Create placeholder components for all new routes (Volunteer, Photo, Video, etc.)
+- [x] Create `src/router.tsx` (Angular equivalent of `app-routing.module.ts`)
+- [x] Modify `src/main.tsx` or `src/App.tsx` to mount the `RouterProvider`
+- [x] Update `src/layouts/MainLayout.tsx` to include `<Outlet />` (Angular equivalent of `<router-outlet>`)
+- [x] Update `sidebar.tsx` to use `<NavLink>` (Angular equivalent of `routerLinkActive`)
+- [x] Update `sidebar.css` active styles to target `.sidebar-link.active`
+- [x] Verify routing works

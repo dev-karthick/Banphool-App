@@ -1,0 +1,15 @@
+.quick-action-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-action-card:hover {
+    background-color: #1f3e30;
+    /* Bootstrap success green */
+    transform: translateY(-3px);
+}
+
+.quick-action-card:hover .quick-action-icon,
+.quick-action-card:hover p {
+    color: #fff !important;
+}
