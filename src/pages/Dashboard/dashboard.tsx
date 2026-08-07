@@ -5,6 +5,7 @@ const recentActivity = [
     { id: 2, text: 'Health Camp event scheduled for Aug 15', time: '2 hours ago', color: 'primary', icon: 'bi-calendar-event' },
     { id: 3, text: 'Rahul Sharma applied to volunteer', time: '5 hours ago', color: 'warning', icon: 'bi-person-plus' },
     { id: 4, text: 'Monthly Impact Report published', time: '1 day ago', color: 'info', icon: 'bi-file-earmark-bar-graph' },
+    { id: 4, text: 'Monthly Impact Report published', time: '1 day ago', color: 'info', icon: 'bi-file-earmark-bar-graph' },
 ];
 
 const dashboardCards = [
@@ -66,25 +67,24 @@ const quickActions = [
 const Dashboard = () => {
     return (
         <div className="dashboard-container p-4">
-            <header className="dashboard-header">
-                <div>
-                    <h1 className="dashboard-title">Welcome back, Admin</h1>
-                    <p className="dashboard-subtitle">Here is what's happening with Banphool today.</p>
+            <div className="d-flex justify-content-between mb-4 align-items-center">
+                <div className="col-md-10">
+                    <h1 className="">Welcome back, Admin</h1>
+                    <p className="">Here is what's happening with Banphool today.</p>
                 </div>
-            </header>
-            <div className="d-flex justify-content-end mb-4">
-                <div className="bg-light rounded-3 px-3 py-2 d-inline-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <span>
-                        {new Date().toLocaleDateString("en-US", {
-                            weekday: "long",
-                            month: "long",
-                            day: "numeric",
-                        })}
-                    </span>
+                <div className="col-md-2">
+                    <div className="bg-light rounded-3 px-3 py-2 d-inline-flex align-items-center">
+                        <i className="bi bi-calendar3 me-2"></i>
+                        <span>
+                            {new Date().toLocaleDateString("en-US", {
+                                weekday: "long",
+                                month: "long",
+                                day: "numeric",
+                            })}
+                        </span>
+                    </div>
                 </div>
             </div>
-
             <div className="col-md-12">
                 <div className="row">
                     {dashboardCards.map((card, index) =>
@@ -114,29 +114,31 @@ const Dashboard = () => {
                         <div className="card border-0 shadow-lg rounded-4 w-100">
                             <div className="card-body m-2">
                                 <p className="card-title fw-bold fs-5">Recent Activity</p>
-                                <div className="border-bottom"></div>
-                                {recentActivity.map((card, index) =>
-                                    <div className={`card border-0 mt-3 shadow-sm rounded-4 border-start border-4 border-${card.color} bg-${card.color}-subtle`} key={index}>
-                                        <div className="card-body">
-                                            <div className="row align-items-center">
-                                                <div className="col-auto m-2">
-                                                    <div className={`bg-${card.color}-subtle p-2 rounded-3 px-3`}>
-                                                        <i className={`${card.icon} fs-4 text-${card.color}`}></i>
+                                <div className="activity-scroll pe-3 ps-1">
+                                    <div className="border-bottom"></div>
+                                    {recentActivity.map((card, index) =>
+                                        <div className={`card border-0 mt-3 shadow-sm rounded-4 border-start border-4 border-${card.color} bg-${card.color}-subtle`} key={index}>
+                                            <div className="card-body">
+                                                <div className="row align-items-center">
+                                                    <div className="col-auto m-2">
+                                                        <div className={`bg-${card.color}-subtle p-2 rounded-3 px-3`}>
+                                                            <i className={`${card.icon} fs-4 text-${card.color}`}></i>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div className="col">
-                                                    <p className="fw-semibold mb-1 fs-5">
-                                                        {card.text}
-                                                    </p>
-                                                    <p className="mb-0 text-muted">
-                                                        {card.time}
-                                                    </p>
+                                                    <div className="col">
+                                                        <p className="fw-semibold mb-1 fs-5">
+                                                            {card.text}
+                                                        </p>
+                                                        <p className="mb-0 text-muted">
+                                                            {card.time}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

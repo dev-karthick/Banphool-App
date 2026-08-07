@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
-function Sidebar() {
+interface SidebarProps {
+  collapsed?: boolean;
+}
+
+function Sidebar({ collapsed = false }: SidebarProps) {
   return (
-    <aside className="premium-sidebar">
+    <aside className={`premium-sidebar ${collapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-menu-title">
         <i className="bi bi-compass"></i>
         <span>Navigation</span>

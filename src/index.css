@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 :root {
     /* Colors extracted from your image */
     --logo-primary: #173b30;
     /* Deep forest green */
     --logo-secondary: #ba2e26;
     /* Rusty red */
-    --header-bg: rgba(248, 246, 239, 0.9);
-    /* Off-white/cream background */
+    --header-bg: linear-gradient(135deg, #f9fbfb, #fdf6f6);
+    /* Soft pastel gradient background */
     --text-primary: #333333;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--header-bg);
+    min-height: 100vh;
 }

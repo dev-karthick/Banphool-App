@@ -13,16 +13,61 @@ function Login({ onLogin }: Props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        // Bypassing the email/password check!
-        // This tells App.tsx that you are logged in, unlocking the protected routes
-        onLogin();
-        
-        // Now that the router is unlocked, navigate to the dashboard
-        navigate("/dashboard");
+
+        if (!email || !password) {
+            setError('Please enter both email and password.');
+            return;
+        }
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            // In React (Vite), environment variables are accessed via import.meta.env
+            // This is similar to Angular's environment.ts files
+            const apiUrl = import.meta.env.VITE_API_URL;
+
+            // Using standard fetch API, which is similar to Angular's HttpClient
+            const response = await fetch(`${apiUrl}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Invalid email or password');
+            }
+
+            // Store the tokens returned from the API response
+            localStorage.setItem('accessToken', data.data.accessToken);
+            if (data.data.refreshToken) {
+                localStorage.setItem('refreshToken', data.data.refreshToken);
+            }
+            if (data.data.user) {
+                localStorage.setItem('user', JSON.stringify(data.data.user));
+            }
+
+            // Notify parent component to update auth state
+            onLogin();
+
+            // Navigate to dashboard
+            navigate("/dashboard");
+        } catch (err: any) {
+            setError(err.message || 'An error occurred during login. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
+        // onLogin()
+        // navigate("/dashboard");
     };
 
     return (
@@ -40,16 +85,21 @@ function Login({ onLogin }: Props) {
                     </div>
 
                     <form onSubmit={handleSubmit}>
+                        {error && (
+                            <div className="alert alert-danger p-2 mb-3" style={{ fontSize: '0.9rem' }}>
+                                {error}
+                            </div>
+                        )}
+
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
                             <input
-                                type="email"
+                                type="text"
                                 id="email"
                                 className="premium-input"
                                 placeholder="admin@banphool.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                            // required
                             />
                         </div>
 
@@ -63,7 +113,6 @@ function Login({ onLogin }: Props) {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                // required
                                 />
                                 <button
                                     type="button"
@@ -84,12 +133,20 @@ function Login({ onLogin }: Props) {
                             <a href="#" className="forgot-password">Forgot Password?</a>
                         </div>
 
-                        <button type="submit" className="login-btn">
-                            Sign In
+                        <button type="submit" className="login-btn" disabled={isLoading}>
+                            {isLoading ? (
+                                <span>
+                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Signing in...
+                                </span>
+                            ) : (
+                                "Sign In"
+                            )}
                         </button>
                     </form>
                 </div>
             </div>
+
         </div>
     );
 }

@@ -171,3 +171,110 @@
   from { opacity: 0; transform: scale(0.95) translateY(-5px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+/* --- New Action Items (Sidebar Toggle, Search, Fullscreen) --- */
+
+.sidebar-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--logo-primary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s;
+  margin-right: 0.5rem;
+}
+
+.sidebar-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.header-center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.global-search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  width: 100%;
+  max-width: 450px;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.global-search-container:focus-within {
+  background: #ffffff;
+  border-color: rgba(25, 135, 84, 0.3);
+  box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+}
+
+.search-icon {
+  color: #888;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.global-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.global-search-input::placeholder {
+  color: #aaa;
+}
+
+.header-action-btn {
+  background: rgba(23, 59, 48, 0.05);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--logo-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-action-btn:hover {
+  background: rgba(23, 59, 48, 0.1);
+  transform: scale(1.05);
+}
+
+.language-selector {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 0.4rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.language-selector:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: rgba(25, 135, 84, 0.3);
+  box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+}

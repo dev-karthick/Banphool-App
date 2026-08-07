@@ -1,0 +1,22 @@
+/* Custom CSS for Volunteer Table */
+
+.gradient-header-table .ant-table-thead > tr > th {
+    background: linear-gradient(135deg, var(--logo-primary), var(--logo-secondary)) !important;
+    color: #ffffff !important;
+}
+
+/* Ensure sorting icons are visible against the gradient */
+.gradient-header-table .ant-table-column-sorter {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.gradient-header-table .ant-table-column-sorter-up.active,
+.gradient-header-table .ant-table-column-sorter-down.active {
+    color: #ffffff !important;
+}
+
+/* Handle hover states for sorted columns */
+.gradient-header-table .ant-table-thead > tr > th.ant-table-column-has-sorters:hover {
+    background: linear-gradient(135deg, var(--logo-primary), var(--logo-secondary)) !important;
+    filter: brightness(1.1);
+}

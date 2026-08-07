@@ -1,21 +1,24 @@
 /* Sidebar Variables based on logo colors */
 .premium-sidebar {
-    --sidebar-bg: #173b30;
-    /* Deep forest green */
-    --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
-    --sidebar-active-bg: linear-gradient(90deg, rgba(186, 46, 38, 0.15) 0%, transparent 100%);
-    --sidebar-accent: #ba2e26;
-    /* Rusty red */
-    --sidebar-text: #f8f6ef;
-    /* Off-white / cream */
-    --sidebar-text-muted: rgba(248, 246, 239, 0.6);
+    --sidebar-bg: linear-gradient(135deg, rgba(23, 59, 48, 0.08), rgba(186, 46, 38, 0.08)); /* Light pastel gradient based on title colors */
+        --sidebar-hover-bg: rgba(23, 59, 48, 0.04);
+        /* Subtle primary color overlay for hover */
+        --sidebar-active-bg: linear-gradient(90deg, rgba(23, 59, 48, 0.08) 0%, transparent 100%);
+        --sidebar-accent: var(--logo-primary);
+        /* Use primary color for accents instead of red to keep it soft */
+        --sidebar-text: #333333;
+        /* Dark text for readability on light background */
+        --sidebar-text-muted: #6b7280;
+        /* Gray text for muted items */
 
-    background-color: var(--sidebar-bg);
+    background: var(--sidebar-bg);
     min-height: calc(100vh - 75px);
     /* Assuming header is around 75px */
-    height: 100%;
+    height: calc(100vh - 75px);
     width: 100%;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.06);
+    border-right: 1px solid rgba(0, 0, 0, 0.08); /* Clear separation line */
+    z-index: 10; /* Ensures shadow renders over main content */
     display: flex;
     flex-direction: column;
     position: sticky;
@@ -25,14 +28,19 @@
 
 .sidebar-menu-title {
     padding: 2rem 1.5rem 1rem;
-    color: var(--sidebar-text-muted);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    
+    /* Apply the topbar title gradient color to sidebar titles */
+    background: linear-gradient(135deg, var(--logo-primary), var(--logo-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--logo-primary); /* fallback */
 }
 
 .sidebar-nav {
@@ -90,4 +98,51 @@
 
 .sidebar-link.active .sidebar-icon {
     color: var(--sidebar-accent);
+}
+/* Custom Lightweight Scrollbar */
+.premium-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.premium-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.premium-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+.premium-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Collapsed Sidebar Styles */
+.premium-sidebar.collapsed {
+    width: 100%;
+}
+
+.premium-sidebar.collapsed .sidebar-menu-title span,
+.premium-sidebar.collapsed .sidebar-link span {
+    display: none;
+}
+
+.premium-sidebar.collapsed .sidebar-menu-title {
+    justify-content: center;
+    padding: 1.5rem 0 0.5rem;
+}
+
+.premium-sidebar.collapsed .sidebar-link {
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.premium-sidebar.collapsed .sidebar-icon {
+    margin-right: 0;
+    font-size: 1.5rem;
+}
+
+.premium-sidebar.collapsed .sidebar-menu-title i {
+    margin-right: 0;
+    font-size: 1.2rem;
 }
