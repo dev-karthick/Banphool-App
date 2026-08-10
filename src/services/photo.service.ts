@@ -22,6 +22,19 @@ export const PhotoService = {
     return await response.json();
   },
 
+  getPhotoById: async (id: string) => {
+    const response = await apiClient(`/web/photos/${id}`, {
+      method: 'GET'
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch photo details');
+    }
+
+    return await response.json();
+  },
+
+
   /**
    * Upload a photo file to the server.
    * 

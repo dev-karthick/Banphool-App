@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Card, Button, Progress, message, Input, Form, Tag } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { PhotoService } from '../../services/photo.service';
+import { ViedoService } from '../../services/viedo.service';
 
 /**
  * PhotoForm Component
@@ -9,7 +9,7 @@ import { PhotoService } from '../../services/photo.service';
  * [ANGULAR CONCEPT]: In Angular, this would be your @Component class (e.g. PhotoFormComponent).
  * In React, we use functional components. We manage state (like properties in an Angular class) using the `useState` hook.
  */
-export default function PhotoForm() {
+export default function VideoForm() {
     const navigate = useNavigate();
 
     // [ANGULAR CONCEPT]: `useRef` is similar to `@ViewChild()` in Angular. 
@@ -71,7 +71,7 @@ export default function PhotoForm() {
                 progress: 50,
             });
 
-            const response = await PhotoService.uploadPhoto({
+            const response = await ViedoService.uploadViedo({
                 header: values.header,
                 description: values.description,
                 document: fileList[0].file,
@@ -83,6 +83,7 @@ export default function PhotoForm() {
             });
             console.log(response);
             message.success(response.message);
+            navigate('/video-gallery')
         } catch (error: any) {
             if (error.errorFields) {
                 return; // Validation failed, do not proceed
@@ -148,7 +149,7 @@ export default function PhotoForm() {
                     <h5 className="mb-0 fw-bold d-flex align-items-center gap-2">
                         <i className="bi bi-file-earmark-arrow-up"></i> Upload Files
                     </h5>
-                    <Button type="text" icon={<i className="bi bi-x-lg"></i>} onClick={() => navigate('/photo-gallery')} />
+                    <Button type="text" icon={<i className="bi bi-x-lg"></i>} onClick={() => navigate('/video-gallery')} />
                 </div>
                 <p className="text-muted" style={{ fontSize: '0.85rem' }}>Uploaded project attachments.</p>
 
@@ -159,17 +160,17 @@ export default function PhotoForm() {
                         layout="vertical"
                         requiredMark={customizeRequiredMark}>
                         <div className='col-md-12'>
-                            <Form.Item label={<span className='fs-6 fw-semibold' style={{ fontFamily: 'Poppins' }}>Enter Photo Header</span>} name="header"
+                            <Form.Item label={<span className='fs-6 fw-semibold' style={{ fontFamily: 'Poppins' }}>Enter Video Header</span>} name="header"
                                 rules={
                                     [
                                         {
                                             required: true,
-                                            message: 'Please enter the photo header!'
+                                            message: 'Please enter the video header!'
                                         }
                                     ]
                                 }>
                                 <Input
-                                    placeholder="Enter Photo Header"
+                                    placeholder="Enter Video Header"
                                     className="mb-2"
                                     size="large"
                                 />
@@ -302,7 +303,7 @@ export default function PhotoForm() {
 
                 {/* Footer Buttons */}
                 <div className="d-flex gap-3 mt-4">
-                    <Button size="large" className="flex-fill fw-semibold rounded-3" onClick={() => navigate('/photo-gallery')}>
+                    <Button size="large" className="flex-fill fw-semibold rounded-3" onClick={() => navigate('/video-gallery')}>
                         Cancel
                     </Button>
                     <Button

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Table, Tag, Space, Button, Input, message, ConfigProvider } from 'antd';
+import { Table, Space, Button, Input, message, ConfigProvider } from 'antd';
 import type { TableProps } from 'antd';
 import { useNavigate, Link } from 'react-router-dom';
 import { PhotoService } from '../../services/photo.service';
@@ -35,7 +35,7 @@ const columns: TableProps['columns'] = [
     width: 220, // Reduced width for the action column
     render: (_, record) => (
       <Space size="middle">
-        <Link to={`/volunteer/view/${record.id}`}>
+        <Link to={`/photo-gallery/view/${record.id}`}>
           <Button type="text" className="p-0 text-success"><i className="bi bi-eye"></i> View</Button>
         </Link>
         <Button type="text" className="p-0 text-primary"><i className="bi bi-pencil-square"></i> Edit</Button>
