@@ -33,15 +33,21 @@ export const apiClient = async (endpoint: string, options: RequestInit = {}) => 
   try {
     const response = await fetch(url, config);
 
-    // Optional: Handle global 401 Unauthorized errors here (e.g., redirect to login)
+    // Handle global 401 Unauthorized errors here (e.g., redirect to login)
     if (response.status === 401) {
       console.warn('Unauthorized! Token might be expired.');
-      // You could clear localStorage and redirect to login here:
-      // localStorage.clear();
-      // window.location.href = '/login';
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
     }
 
-    return response;
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || response.statusText || 'API request failed');
+    }
+
+    return await response.json().catch(() => null);
   } catch (error) {
     console.error('API Error:', error);
     throw error;

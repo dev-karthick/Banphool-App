@@ -8,61 +8,19 @@ import { apiClient } from './apiClient';
  * Think of this file like a standalone injectable service.
  */
 export const ViedoService = {
+  getViedo: () => apiClient('/web/videos'),
 
-    getViedo: async () => {
-        // We just pass the relative endpoint to our apiClient, it handles the BASE_URL and Token
-        const response = await apiClient('/web/videos', {
-            method: 'GET'
-        });
+  getViedoById: (id: string) => apiClient(`/web/videos/${id}`),
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
+  uploadViedo: (payload: { header: string; description: string; document: File }) => {
+    const formData = new FormData();
+    formData.append('header', payload.header);
+    formData.append('description', payload.description);
+    formData.append('document', payload.document);
 
-        return await response.json();
-    },
-
-    getViedoById: async (id: string) => {
-        const response = await apiClient(`/web/videos/${id}`, {
-            method: 'GET'
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch video details');
-        }
-
-        return await response.json();
-    },
-
-
-    /**
-     * Upload a photo file to the server.
-     * 
-     * @param payload Object containing header, description, and the document file
-     * @returns The JSON response from the server
-     */
-    uploadViedo: async (payload: { header: string; description: string; document: File }) => {
-        // [ANGULAR CONCEPT]: This is similar to using the Angular HttpClient. 
-        // We are using the native browser 'fetch' API (wrapped in our apiClient) which returns a Promise instead of an Observable.
-
-        // Create a FormData object to send the file via multipart/form-data
-        const formData = new FormData();
-        formData.append('header', payload.header);
-        formData.append('description', payload.description);
-        formData.append('document', payload.document);
-
-        // Assuming the backend has a /web/photo/upload endpoint
-        const response = await apiClient('/web/videos', {
-            method: 'POST',
-            // Notice we DON'T set 'Content-Type': 'application/json' here.
-            // The browser will automatically set 'Content-Type': 'multipart/form-data' with the correct boundary when passing FormData.
-            body: formData,
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to upload photo');
-        }
-
-        return await response.json();
-    }
+    return apiClient('/web/videos', {
+      method: 'POST',
+      body: formData,
+    });
+  }
 };
