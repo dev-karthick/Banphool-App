@@ -21,6 +21,8 @@ import Reports from './pages/Reports/reports';
 import './App.css';
 import Dashboard from './pages/Dashboard/dashboard';
 import VideoView from './pages/VideoGallery/video-view';
+import NewsForm from './pages/News/news-form';
+import NewsView from './pages/News/news-view';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('accessToken'));
@@ -54,6 +56,8 @@ function App() {
           <Route path="events-form" element={<EventForm />} />
           <Route path="events/view/:id" element={<EventView />} />
           <Route path="news" element={<News />} />
+          <Route path="news-form" element={<NewsForm />} />
+          <Route path="news/view/:id" element={<NewsView />} />
           <Route path="apply" element={<ApplyForm />} />
           <Route path="contact" element={<Contact />} />
           <Route path="donate" element={<Donate />} />
