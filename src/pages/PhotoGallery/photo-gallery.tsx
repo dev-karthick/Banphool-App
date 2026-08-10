@@ -32,13 +32,13 @@ const columns: TableProps['columns'] = [
   {
     title: 'Action',
     key: 'action',
-    width: 220, // Reduced width for the action column
+    width: 100, // Reduced width for the action column
     render: (_, record) => (
       <Space size="middle">
         <Link to={`/photo-gallery/view/${record.id}`}>
           <Button type="text" className="p-0 text-success"><i className="bi bi-eye"></i> View</Button>
         </Link>
-        <Button type="text" className="p-0 text-primary"><i className="bi bi-pencil-square"></i> Edit</Button>
+        {/* <Button type="text" className="p-0 text-primary"><i className="bi bi-pencil-square"></i> Edit</Button> */}
         <Button type="text" danger className="p-0"><i className="bi bi-trash"></i> Delete</Button>
       </Space>
     ),

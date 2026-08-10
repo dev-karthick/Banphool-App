@@ -11,6 +11,8 @@ import PhotoView from './pages/PhotoGallery/photo-view';
 import VideoGallery from './pages/VideoGallery/video-gallery';
 import VideoForm from './pages/VideoGallery/video-form';
 import Events from './pages/Events/events';
+import EventForm from './pages/Events/event-form';
+import EventView from './pages/Events/event-view';
 import News from './pages/News/news';
 import ApplyForm from './pages/ApplyForm/apply-form';
 import Contact from './pages/Contact/contact';
@@ -49,6 +51,8 @@ function App() {
           <Route path="video-form" element={<VideoForm />} />
           <Route path="video-gallery/view/:id" element={<VideoView />} />
           <Route path="events" element={<Events />} />
+          <Route path="events-form" element={<EventForm />} />
+          <Route path="events/view/:id" element={<EventView />} />
           <Route path="news" element={<News />} />
           <Route path="apply" element={<ApplyForm />} />
           <Route path="contact" element={<Contact />} />
